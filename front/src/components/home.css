@@ -1,0 +1,17 @@
+body {
+  background-image: url('../assets/img/bck.png');
+  resize: contain;
+}
+
+#root {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+.login-page {
+  background-color: #ec5b15;
+  display: flex;
+  width: 550px;
+  justify-self: left;
+  height: 100vh;
+}
