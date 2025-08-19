@@ -2,6 +2,8 @@ import express from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
+import dotenv from 'dotenv';
+dotenv.config(); // 🔥 assure que .env est bien lu
 
 const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -27,8 +29,12 @@ router.post('/login', async (req, res) => {
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) return res.status(401).json({ error: 'Mot de passe incorrect' });
 
-  const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: '1d' });
-  res.json({ message: 'Connecté', token });
-});
+console.log('JWT_SECRET vaut :', JWT_SECRET);
+const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: '1d' });
+res.json({
+  message: 'Connecté',
+  token,
+  admin: { id: user._id, email: user.email }
+});});
 
 export default router;
