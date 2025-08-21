@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import './home.css';
 import LogoW from '../assets/img/logo-w.png';
+import Deco from '../assets/deco.png'
 
 export default function Home() {
   const [email, setEmail] = useState('');
@@ -71,6 +72,10 @@ export default function Home() {
 
           {message && <p className="message">{message}</p>}
         </div>
+      </div>
+
+      <div className="deco">
+        <img src={Deco} alt="" />
       </div>
     </div>
   );

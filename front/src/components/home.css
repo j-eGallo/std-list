@@ -41,8 +41,9 @@ html, body {
 .logo {
   width: auto;
   margin-bottom: 10px;
-  width: 212px;
-  height: 45px;
+  width: 222px;
+  height: auto;
+  resize: contain;
 }
 
 
@@ -98,6 +99,11 @@ label {
 .message {
   margin-top: 10px;
   font-size: 14px;
+}
+
+.deco {
+    width: 1325px;
+    margin-left: 500px;
 }
 
 @media (max-width: 600px) {
