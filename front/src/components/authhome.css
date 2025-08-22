@@ -5,17 +5,21 @@
 }
 
 .sidebar {
-  background-color: #e64a19; /* orange foncé */
-  color: white;
-  width: 250px;
-  padding: 1.5rem 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+    background-color: #ec5b15;
+    color: white;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-top: 20px;
 }
+
 
 .user-section {
   margin-bottom: 2rem;
+  display: flex;
+  gap: 10px;
 }
 
 .user-avatar {
@@ -23,7 +27,6 @@
   height: 40px;
   background-color: #3f51b5;
   border-radius: 50%;
-  margin-bottom: 0.5rem;
 }
 
 .user-name {
@@ -42,17 +45,59 @@
 .menu-btn {
   background: none;
   border: none;
-  color: white;
+  color: #ec5b15; /* rend aussi les SVG orange */
   text-align: left;
   font-size: 1rem;
   display: flex;
   align-items: center;
   gap: 10px;
   cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 5px;
+  transition: background 0.2s ease;
+}
+
+.menu-btn .icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.menu-btn h1 {
+  color: white;
+  margin: 0;
+}
+
+.menu-btn:hover h1 {
+  color: #ec5b15;
 }
 
 .menu-btn:hover {
-  text-decoration: underline;
+  background-color: white;
+  color: #ec5b15;
+}
+
+.menu-btn:hover .icon {
+  color: #ec5b15;
+}
+
+
+
+.bottom-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #ec5b15;
+  transition: background 0.2s ease;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
+.bottom-link:hover {
+  background-color: white;
+  color: #ec5b15;
 }
 
 .bottom-link {
@@ -75,4 +120,31 @@
 .nothing-img {
   width: 350px;
   opacity: 0.7;
+}
+
+
+.menu-btn.active {
+  background-color: #fff;
+  color: #ec5b15;
+  font-weight: bold;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
+.menu-btn.active h1 {
+  color: #ec5b15;
+}
+
+.menu-btn.active .icon {
+  color: #ec5b15;
+}
+
+.menu-btn .icon {
+  width: 18px;
+  height: 18px;
+  color: white;
+}
+
+.menu-btn:hover .icon {
+  color: #ec5b15;
 }
