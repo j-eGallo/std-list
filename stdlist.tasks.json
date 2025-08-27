@@ -1,0 +1,24 @@
+[{
+  "_id": {
+    "$oid": "68af184416dc6f885617c23d"
+  },
+  "userId": {
+    "$oid": "68a85dd7ef084384ec454a6c"
+  },
+  "text": "tst",
+  "date": "2025-08-27",
+  "done": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68af185216dc6f885617c242"
+  },
+  "userId": {
+    "$oid": "68a85dd7ef084384ec454a6c"
+  },
+  "text": "Faire les courses",
+  "date": "2025-08-27",
+  "done": false,
+  "__v": 0
+}]

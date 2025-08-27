@@ -7,11 +7,10 @@
 .sidebar {
     background-color: #ec5b15;
     color: white;
-    width: 250px;
+    width: 350px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding-left: 20px;
     padding-top: 20px;
 }
 
@@ -36,15 +35,77 @@
   gap: 5px;
 }
 
+.dropdown-container {
+  position: relative;
+}
+
+.dropdown-button {
+  background-color: #ec5b15;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.dropdown-button .arrow {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: white;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  width: 220px;
+  z-index: 999;
+  overflow: hidden;
+  left: -3px;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  font-weight: bold;
+  background: white;
+  border: none;
+  color: #222;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #f3f3f3;
+}
+
+.dropdown-item img {
+  width: 20px;
+  height: 20px;
+}
+
+.user-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
 .menu {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
 }
 
 .menu-btn {
   background: none;
   border: none;
+  height: 55px;
   color: #ec5b15; /* rend aussi les SVG orange */
   text-align: left;
   font-size: 1rem;
@@ -53,7 +114,6 @@
   gap: 10px;
   cursor: pointer;
   padding: 0.5rem;
-  border-radius: 5px;
   transition: background 0.2s ease;
 }
 
@@ -92,7 +152,6 @@
   color: #ec5b15;
   transition: background 0.2s ease;
   padding: 0.5rem;
-  border-radius: 5px;
 }
 
 .bottom-link:hover {
@@ -128,7 +187,6 @@
   color: #ec5b15;
   font-weight: bold;
   padding: 0.5rem;
-  border-radius: 5px;
 }
 
 .menu-btn.active h1 {
@@ -148,3 +206,5 @@
 .menu-btn:hover .icon {
   color: #ec5b15;
 }
+
+
