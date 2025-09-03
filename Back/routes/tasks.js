@@ -2,6 +2,7 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import Task from '../models/task.js';
 
+
 const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -54,11 +55,38 @@ router.post('/', auth, async (req, res) => {
     await newTask.save();
     res.status(201).json({ message: "Tâche ajoutée", task: newTask });
   } catch (err) {
-    console.error("❌ Erreur POST /tasks :", err);
+    console.error("Erreur POST /tasks :", err);
     res.status(500).json({ error: 'Erreur serveur' });
   }
 });
 
+router.put('/:id', auth, async (req, res) => {
+  try {
+    const { text, date } = req.body;
+    const updated = await Task.findByIdAndUpdate(
+      req.params.id,
+      { text, date },
+      { new: true }
+    );
 
+    if (!updated) return res.status(404).json({ error: "Tâche non trouvée" });
+
+    res.json({ message: "Tâche mise à jour", task: updated });
+  } catch (err) {
+    console.error("Erreur PUT /tasks/:id :", err);
+    res.status(500).json({ error: "Erreur serveur" });
+  }
+});
+
+router.delete('/:id', auth, async (req, res) => {
+  try {
+    const deleted = await Task.findByIdAndDelete(req.params.id);
+    if (!deleted) return res.status(404).json({ error: 'Tâche non trouvée' });
+    res.json({ message: 'Tâche supprimée' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Erreur serveur' });
+  }
+});
 
 export default router;

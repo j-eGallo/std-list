@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Création auto John Doe</title>
+</head>
+<body>
+  <h2>Création automatique de John Doe...</h2>
+  <script>
+    async function createUser() {
+      try {
+        const res = await fetch('http://localhost:3000/auth/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            email: 'johndoe@mail.fr',
+            password: 'aaa',
+            nom: 'Doe',
+            prenom: 'John'
+          })
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          alert("✅ Utilisateur créé : " + JSON.stringify(data));
+        } else {
+          alert("❌ Erreur : " + (data.error || "Erreur inconnue"));
+        }
+
+      } catch (err) {
+        alert("❌ Erreur réseau : " + err.message);
+      }
+    }
+
+    // Lancement automatique à l’ouverture
+    createUser();
+  </script>
+</body>
+</html>

@@ -8,24 +8,37 @@ export default function Today() {
   const [newTaskText, setNewTaskText] = useState("");
   const [newTaskDate, setNewTaskDate] = useState("");
 
+  const [editMode, setEditMode] = useState(false);
+  const [editTaskId, setEditTaskId] = useState(null);
+
   const today = new Date().toISOString().split("T")[0];
-
-  const openModal = () => {
-    setNewTaskText("");
-    setNewTaskDate(today); // par défaut : aujourd’hui
-    setShowModal(true);
-  };
-  const closeModal = () => setShowModal(false);
-
   const token = localStorage.getItem("token");
 
-  // 🔄 Charger les tâches du jour depuis MongoDB
+  const openModal = (task = null) => {
+    if (task) {
+      setEditMode(true);
+      setEditTaskId(task._id);
+      setNewTaskText(task.text);
+      setNewTaskDate(task.date);
+    } else {
+      setEditMode(false);
+      setEditTaskId(null);
+      setNewTaskText("");
+      setNewTaskDate(today);
+    }
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setEditMode(false);
+    setEditTaskId(null);
+  };
+
   const fetchTasks = async () => {
     try {
       const res = await fetch(`http://localhost:3000/api/tasks/${today}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
       setTasks(data);
@@ -38,7 +51,6 @@ export default function Today() {
     fetchTasks();
   }, []);
 
-  // ✅ Ajouter une nouvelle tâche
   const handleAddTask = async () => {
     if (!newTaskText.trim()) return;
 
@@ -49,21 +61,58 @@ export default function Today() {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({
-          text: newTaskText,
-          date: newTaskDate,
-        }),
+        body: JSON.stringify({ text: newTaskText, date: newTaskDate }),
       });
 
       const result = await res.json();
       if (res.ok) {
         closeModal();
-        fetchTasks(); // 🔄 recharger la liste après ajout
+        fetchTasks();
       } else {
         console.error(result.error);
       }
     } catch (err) {
       console.error("Erreur ajout tâche :", err);
+    }
+  };
+
+  const handleEditTask = async () => {
+    try {
+      const res = await fetch(`http://localhost:3000/api/tasks/${editTaskId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ text: newTaskText, date: newTaskDate }),
+      });
+
+      if (res.ok) {
+        closeModal();
+        fetchTasks();
+      } else {
+        const result = await res.json();
+        console.error(result.error);
+      }
+    } catch (err) {
+      console.error("Erreur modif tâche :", err);
+    }
+  };
+
+  const handleDeleteTask = async (taskId) => {
+    try {
+      const res = await fetch(`http://localhost:3000/api/tasks/${taskId}`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (res.ok) {
+        setTasks(tasks.filter((t) => t._id !== taskId));
+      } else {
+        console.error("Erreur suppression tâche");
+      }
+    } catch (err) {
+      console.error("Erreur :", err);
     }
   };
 
@@ -76,13 +125,12 @@ export default function Today() {
             {tasks.length} tâche{tasks.length !== 1 ? "s" : ""}
           </span>
         </div>
-        <div className="right-block" onClick={openModal}>
+        <div className="right-block" onClick={() => openModal()}>
           <img src={PlusIcon} alt="Ajouter une tâche" className="plus-icon" />
           <span className="ajouter-texte">Ajouter une tâche</span>
         </div>
       </div>
 
-      {/* 💡 Modal ajout de tâche */}
       {showModal && (
         <div className="overlay">
           <div className="modal">
@@ -93,31 +141,40 @@ export default function Today() {
               value={newTaskText}
               onChange={(e) => setNewTaskText(e.target.value)}
             />
-
             <input
               type="date"
               value={newTaskDate}
               onChange={(e) => setNewTaskDate(e.target.value)}
             />
-
             <div className="modal-buttons">
               <button className="cancel-btn" onClick={closeModal}>
                 Annuler
               </button>
-              <button className="add-btn" onClick={handleAddTask}>
-                Ajouter
+              <button
+                className="add-btn"
+                onClick={editMode ? handleEditTask : handleAddTask}
+              >
+                {editMode ? "Modifier" : "Ajouter"}
               </button>
             </div>
           </div>
         </div>
       )}
 
-      {/* 📋 Liste des tâches */}
       {tasks.length > 0 && (
         <div className="task-list">
-          {tasks.map((task, index) => (
-            <div key={index} className="task-item">
-              ⭕ {task.text}
+          {tasks.map((task) => (
+            <div key={task._id} className="task-item">
+              <input
+                type="checkbox"
+                onChange={() => handleDeleteTask(task._id)}
+              />
+              <span
+                className="task-text"
+                onClick={() => openModal(task)}
+              >
+                {task.text}
+              </span>
             </div>
           ))}
         </div>

@@ -25,7 +25,7 @@ export default function Home() {
         localStorage.setItem('admin_id', data.admin.id);
         localStorage.setItem('admin_info', JSON.stringify(data.admin));
         setMessage('Connexion réussie');
-        navigate('/auth-home'); // ✅ à adapter selon ta route réelle
+        navigate('/auth-home'); // 
       } else {
         setMessage(data.error || 'Erreur de connexion');
       }

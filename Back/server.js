@@ -18,7 +18,7 @@ app.use('/api/tasks', tasksRoutes);
 
 mongoose.connect('mongodb://localhost:27017/stdlist')
   .then(() => {
-    console.log('✅ MongoDB connecté');
-    app.listen(3000, () => console.log('✅ Serveur lancé sur http://localhost:3000'));
+    console.log('MongoDB est connecté !');
+    app.listen(3000, () => console.log('Serveur lancé sur http://localhost:3000'));
   })
-  .catch(err => console.error('❌ Erreur MongoDB :', err));
+  .catch(err => console.error('Erreur MongoDB :', err));

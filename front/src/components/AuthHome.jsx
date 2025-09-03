@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Sidebar from "../components/SideBar"; // adapte le chemin
-import Today from "./Today"; // idem
+import Sidebar from "../components/SideBar"; 
+import Today from "./Today"; 
 import "./authhome.css";
 
 export default function AuthHome() {
