@@ -26,70 +26,90 @@ html, body {
   background-color: #ec5b15;
   width: 550px;
   height: 100%;
+
   display: flex;
   flex-direction: column;
+
   padding: 30px;
   box-sizing: border-box;
+
   color: white;
+
   margin: 0;
+
   position: absolute;
   top: 0;
   left: 0;
 }
 
-
 .logo {
-  width: auto;
   margin-bottom: 10px;
   width: 222px;
   height: auto;
-  resize: contain;
 }
-
 
 #login-card {
   flex-grow: 1;
+  min-height: 722px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 #login-card h2 {
-  font-size: 22px;
-  margin-bottom: 20px;
   font-size: 40px;
   font-weight: 900;
+
   margin-top: 0;
   margin-bottom: 55px;
+
   text-align: center;
 }
 
 label {
-    font-size: 14px;
-    margin-bottom: 5px;
-    display: block;
-    text-align: left;
+  font-size: 14px;
+
+  margin-bottom: 5px;
+
+  display: block;
+  text-align: left;
 }
 
 .aremplir {
-    padding: 10px;
-    border-radius: 6px;
-    border: none;
-    margin-bottom: 15px;
-    width: 471px;
-    height: 40px;
-    font-size: 14px;
+  padding: 10px;
+
+  border-radius: 6px;
+  border: none;
+
+  margin-bottom: 15px;
+
+  width: 471px;
+  height: 40px;
+
+  font-size: 14px;
+}
+
+form {
+  text-align: center !important;
+  min-height: 450px !important;  
 }
 
 #subutton {
-  padding: 10px;
+  padding: 14px;
+
   background-color: white;
   color: #ec5b15;
+
   border: none;
   border-radius: 6px;
+
   font-weight: bold;
+
   cursor: pointer;
+
   transition: 0.3s ease;
+
+  margin-top: 10px;
 }
 
 #subutton:hover {
@@ -97,19 +117,39 @@ label {
 }
 
 .message {
-  margin-top: 10px;
+  margin-top: 15px;
   font-size: 14px;
 }
 
+.switch-text {
+  margin-top: 25px;
+
+  text-align: center;
+
+  font-size: 15px;
+}
+
+.switch-span {
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .deco {
-    width: 1325px;
-    margin-left: 500px;
+  width: 1325px;
+  margin-left: 500px;
 }
 
 @media (max-width: 600px) {
+
   .login-page {
     width: 100%;
     height: 100%;
     border-radius: 0;
   }
+
+  .aremplir {
+    width: 100%;
+  }
+
 }

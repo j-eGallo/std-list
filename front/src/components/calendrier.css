@@ -1,11 +1,25 @@
 .calendrier-page {
   width: 1030px;
+  height: 832px;
 }
 
 .calendrier-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 1000;
+  padding-top: 20px;
+}
+
+.days-row {
+  position: sticky;
+  top: 80px;
+
+  background: white;
+
+  z-index: 999;
+
+  padding-bottom: 15px;
 }
 
 .month-label {

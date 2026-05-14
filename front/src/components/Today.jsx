@@ -76,6 +76,12 @@ export default function Today() {
     }
   };
 
+  useEffect(() => {
+
+  document.title = "Super To-do List - Accueil";
+
+}, []);
+
   const handleEditTask = async () => {
     try {
       const res = await fetch(`http://localhost:3000/api/tasks/${editTaskId}`, {

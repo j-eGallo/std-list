@@ -6,6 +6,9 @@ export default function Calendrier() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [tasks, setTasks] = useState([]);
 
+
+  document.title = "Super To-do List - Calendrier";
+
   const token = localStorage.getItem("token");
 
   const formattedDate =
