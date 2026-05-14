@@ -38,13 +38,7 @@ export default function SideBar({ prenom, nom, setActiveView, activeView, handle
         </div>
 
         <nav className="menu">
-          <button
-            className={`menu-btn ${activeView === "add" ? "active" : ""}`}
-            onClick={() => setActiveView("add")}
-          >
-            <img src={Plus} className="icon" alt="Ajouter" />
-            <h1>Ajouter une tâche</h1>
-          </button>
+
           <button
             className={`menu-btn ${activeView === "today" ? "active" : ""}`}
             onClick={() => setActiveView("today")}

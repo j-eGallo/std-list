@@ -44,7 +44,6 @@ export default function AuthHome() {
 
       <main className="main-content">
         {activeView === "today" && <Today />}
-        {activeView === "add" && <h1>Formulaire d'ajout à venir</h1>}
         {activeView === "calendar" && <Calendrier />}
       </main>
     </div>

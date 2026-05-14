@@ -138,6 +138,7 @@ form {
 .deco {
   width: 1325px;
   margin-left: 500px;
+  pointer-events: none;
 }
 
 @media (max-width: 600px) {
