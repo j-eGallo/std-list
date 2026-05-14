@@ -1,0 +1,190 @@
+.calendrier-page {
+  width: 1030px;
+}
+
+.calendrier-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.month-label {
+  font-weight: 600;
+}
+
+.calendar-controls {
+  display: flex;
+  gap: 8px;
+  border-radius: 100%;
+}
+
+.calendar-controls button {
+  appearance: none;
+  -webkit-appearance: none;
+  place-self: center;
+  color: white;
+  background: #ec5b15;
+  border: 1px solid #ec5b15;
+  outline: none;
+  box-shadow: none;
+  cursor: pointer;
+  border-radius: 100px;
+  font-weight: bolder;
+}
+
+.daynav {
+  height: 30px;
+  width: 30px;
+  font-size: 20px;
+}
+
+.today {
+  height: 40px;
+  width: 140px;
+}
+
+
+.days-row {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+  margin-top: 20px;
+}
+
+.day-item {
+  border: none;
+  background: transparent;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.day-item:hover {
+    background-color: #ec5d1517;
+  border-radius: 115px;
+}
+
+.day-item.active {
+  font-weight: bold;
+  color: #ec5b15;
+  background-color: #ec5d1517;
+  border-radius: 115px;
+}
+
+.calendrier-page {
+  width: 1030px;
+}
+
+.calendrier-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.month-label {
+  font-weight: 600;
+  font-size: 22px;
+}
+
+.calendar-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.calendar-controls button {
+  appearance: none;
+  -webkit-appearance: none;
+
+  color: white;
+  background: #ec5b15;
+
+  border: 1px solid #ec5b15;
+  outline: none;
+  box-shadow: none;
+  cursor: pointer;
+
+  border-radius: 100px;
+}
+
+.today {
+  padding: 10px 18px;
+}
+
+.daynav {
+  height: 38px;
+  width: 38px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0;
+}
+
+.days-row {
+  display: flex;
+  justify-content: space-between;
+
+  border-bottom: 1px solid #ddd;
+
+  margin-top: 25px;
+  padding-bottom: 15px;
+}
+
+.day-item {
+  border: none;
+  background: transparent;
+
+  padding: 10px 20px;
+
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 5px;
+
+  color: #777;
+}
+
+.day-item.active {
+  font-weight: bold;
+  color: #ec5b15;
+}
+
+.tasks-container {
+  margin-top: 40px;
+}
+
+.tasks-title {
+  margin-bottom: 30px;
+  font-size: 22px;
+}
+
+.task-item-card {
+  border-bottom: 1px solid #e5e5e5;
+
+  padding: 20px 0;
+}
+
+.task-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.task-circle {
+  width: 20px;
+  height: 20px;
+
+  border: 2px solid #999;
+  border-radius: 100%;
+}
+
+.task-text {
+  font-size: 18px;
+}
+
+.empty-tasks {
+  color: #999;
+}

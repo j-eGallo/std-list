@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/SideBar"; 
+import Calendrier from "../components/Calendrier"
 import Today from "./Today"; 
 import "./authhome.css";
 
@@ -44,7 +45,7 @@ export default function AuthHome() {
       <main className="main-content">
         {activeView === "today" && <Today />}
         {activeView === "add" && <h1>Formulaire d'ajout à venir</h1>}
-        {activeView === "calendar" && <h1>Vue calendrier à venir</h1>}
+        {activeView === "calendar" && <Calendrier />}
       </main>
     </div>
   );
