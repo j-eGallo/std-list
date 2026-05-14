@@ -96,7 +96,7 @@ const handleRegister = async (e) => {
   try {
 
     const res = await fetch(
-      "https://std-list-l5e5.onrender.com/auth/register",
+      "https://std-list-l5e5.onrender.com/register",
       {
         method: "POST",
 
