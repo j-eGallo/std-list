@@ -19,7 +19,7 @@ export default function Calendrier() {
     try {
 
       const res = await fetch(
-        `https://std-list-15e5.onrender.com/api/tasks/${formattedDate}`,
+        `https://std-list-l5e5.onrender.com/api/tasks/${formattedDate}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -50,7 +50,7 @@ export default function Calendrier() {
     try {
 
       const res = await fetch(
-        `https://std-list-15e5.onrender.com/api/tasks/${taskId}`,
+        `https://std-list-l5e5.onrender.com/api/tasks/${taskId}`,
         {
           method: "DELETE",
           headers: {
