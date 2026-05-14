@@ -6,10 +6,12 @@ export default function Calendrier() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [tasks, setTasks] = useState([]);
 
-
   document.title = "Super To-do List - Calendrier";
 
   const token = localStorage.getItem("token");
+
+  const API_URL =
+    "https://std-list-15e5.onrender.com";
 
   const formattedDate =
     selectedDate.toISOString().split("T")[0];
@@ -19,7 +21,7 @@ export default function Calendrier() {
     try {
 
       const res = await fetch(
-        `https://std-list-l5e5.onrender.com/api/tasks/${formattedDate}`,
+        `${API_URL}/api/tasks/${formattedDate}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -33,7 +35,10 @@ export default function Calendrier() {
 
     } catch (err) {
 
-      console.error("Erreur fetch tasks :", err);
+      console.error(
+        "Erreur fetch tasks :",
+        err
+      );
 
     }
 
@@ -50,7 +55,7 @@ export default function Calendrier() {
     try {
 
       const res = await fetch(
-        `https://std-list-l5e5.onrender.com/api/tasks/${taskId}`,
+        `${API_URL}/api/tasks/${taskId}`,
         {
           method: "DELETE",
           headers: {
@@ -62,12 +67,16 @@ export default function Calendrier() {
       if (res.ok) {
 
         setTasks(
-          tasks.filter((t) => t._id !== taskId)
+          tasks.filter(
+            (t) => t._id !== taskId
+          )
         );
 
       } else {
 
-        console.error("Erreur suppression tâche");
+        console.error(
+          "Erreur suppression tâche"
+        );
 
       }
 
@@ -85,7 +94,9 @@ export default function Calendrier() {
 
     const date = new Date(selectedDate);
 
-    date.setDate(selectedDate.getDate() + i);
+    date.setDate(
+      selectedDate.getDate() + i
+    );
 
     days.push(date);
 
@@ -101,7 +112,9 @@ export default function Calendrier() {
 
     const newDate = new Date(selectedDate);
 
-    newDate.setDate(selectedDate.getDate() - 1);
+    newDate.setDate(
+      selectedDate.getDate() - 1
+    );
 
     setSelectedDate(newDate);
 
@@ -111,7 +124,9 @@ export default function Calendrier() {
 
     const newDate = new Date(selectedDate);
 
-    newDate.setDate(selectedDate.getDate() + 1);
+    newDate.setDate(
+      selectedDate.getDate() + 1
+    );
 
     setSelectedDate(newDate);
 
@@ -125,18 +140,24 @@ export default function Calendrier() {
         <div className="month-label">
           {
             selectedDate
-              .toLocaleDateString("fr-FR", {
-                month: "long",
-                year: "numeric",
-              })
+              .toLocaleDateString(
+                "fr-FR",
+                {
+                  month: "long",
+                  year: "numeric",
+                }
+              )
               .charAt(0)
               .toUpperCase()
             +
             selectedDate
-              .toLocaleDateString("fr-FR", {
-                month: "long",
-                year: "numeric",
-              })
+              .toLocaleDateString(
+                "fr-FR",
+                {
+                  month: "long",
+                  year: "numeric",
+                }
+              )
               .slice(1)
           }
         </div>
@@ -179,7 +200,9 @@ export default function Calendrier() {
           return (
             <button
               key={day.toISOString()}
-              onClick={() => setSelectedDate(day)}
+              onClick={() =>
+                setSelectedDate(day)
+              }
               className={
                 isActive
                   ? "day-item active"
@@ -188,12 +211,14 @@ export default function Calendrier() {
             >
 
               <span>
-                {day.toLocaleDateString(
-                  "fr-FR",
-                  {
-                    weekday: "short",
-                  }
-                )}
+                {
+                  day.toLocaleDateString(
+                    "fr-FR",
+                    {
+                      weekday: "short",
+                    }
+                  )
+                }
               </span>
 
               <strong>
@@ -244,7 +269,9 @@ export default function Calendrier() {
                 <input
                   type="checkbox"
                   onChange={() =>
-                    handleDeleteTask(task._id)
+                    handleDeleteTask(
+                      task._id
+                    )
                   }
                 />
 
