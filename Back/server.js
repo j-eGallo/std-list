@@ -18,12 +18,9 @@ app.use(cors());
 
 app.use(express.json());
 
-app.options('/auth/register', cors());
-app.options('/auth/login', cors());
+app.use('/auth', cors(), authRoutes);
 
-app.use('/auth', authRoutes);
-
-app.use('/api/tasks', tasksRoutes);
+app.use('/api/tasks', cors(), tasksRoutes);
 
 async function startServer() {
 
