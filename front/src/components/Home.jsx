@@ -33,7 +33,7 @@ export default function Home() {
     try {
 
       const res = await fetch(
-        'https://std-list-l5e5.onrender.com/auth/login',
+        'https://std-list-l5e5.onrender.com/login',
         {
           method: 'POST',
           headers: {
