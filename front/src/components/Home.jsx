@@ -20,9 +20,13 @@ export default function Home() {
 
   const navigate = useNavigate();
 
+  const API_URL =
+    'https://std-list-15e5.onrender.com';
+
   useEffect(() => {
 
-    document.title = "Super To-do List - Accueil";
+    document.title =
+      "Super To-do List - Accueil";
 
   }, []);
 
@@ -33,16 +37,19 @@ export default function Home() {
     try {
 
       const res = await fetch(
-        'https://std-list-15e5.onrender.com/login',
+        `${API_URL}/auth/login`,
         {
           method: 'POST',
+
           headers: {
             'Content-Type': 'application/json'
           },
+
           body: JSON.stringify({
             email,
             password
           })
+
         }
       );
 
@@ -50,21 +57,32 @@ export default function Home() {
 
       if (res.ok) {
 
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('admin_id', data.admin.id);
+        localStorage.setItem(
+          'token',
+          data.token
+        );
+
+        localStorage.setItem(
+          'admin_id',
+          data.admin.id
+        );
+
         localStorage.setItem(
           'admin_info',
           JSON.stringify(data.admin)
         );
 
-        setMessage('Connexion réussie');
+        setMessage(
+          'Connexion réussie'
+        );
 
         navigate('/auth-home');
 
       } else {
 
         setMessage(
-          data.error || 'Erreur de connexion'
+          data.error ||
+          'Erreur de connexion'
         );
 
       }
@@ -73,78 +91,88 @@ export default function Home() {
 
       console.error(err);
 
-      setMessage('Erreur serveur !');
+      setMessage(
+        'Erreur serveur !'
+      );
 
     }
 
   };
 
-const handleRegister = async (e) => {
+  const handleRegister = async (e) => {
 
-  e.preventDefault();
+    e.preventDefault();
 
-  if (registerPassword !== confirmPassword) {
-
-    setMessage(
-      "Les mots de passe ne correspondent pas"
-    );
-
-    return;
-
-  }
-
-  try {
-
-    const res = await fetch(
-      "https://std-list-15e5.onrender.com/register",
-      {
-        method: "POST",
-
-        headers: {
-          "Content-Type": "application/json"
-        },
-
-        body: JSON.stringify({
-
-          prenom: registerPrenom,
-          nom: registerNom,
-          email: registerEmail,
-          password: registerPassword
-
-        })
-
-      }
-    );
-
-    const data = await res.json();
-
-    if (res.ok) {
-
-      setMessage("Compte créé avec succès");
-
-      console.log(data);
-
-    } else {
+    if (
+      registerPassword !==
+      confirmPassword
+    ) {
 
       setMessage(
-        data.error || "Erreur inscription"
+        "Les mots de passe ne correspondent pas"
+      );
+
+      return;
+
+    }
+
+    try {
+
+      const res = await fetch(
+        `${API_URL}/auth/register`,
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type":
+              "application/json"
+          },
+
+          body: JSON.stringify({
+
+            prenom: registerPrenom,
+            nom: registerNom,
+            email: registerEmail,
+            password: registerPassword
+
+          })
+
+        }
+      );
+
+      const data = await res.json();
+
+      if (res.ok) {
+
+        setMessage(
+          "Compte créé avec succès"
+        );
+
+        console.log(data);
+
+      } else {
+
+        setMessage(
+          data.error ||
+          "Erreur inscription"
+        );
+
+      }
+
+    } catch (err) {
+
+      console.error(err);
+
+      setMessage(
+        "Erreur serveur"
       );
 
     }
 
-  } catch (err) {
-
-    console.error(err);
-
-    setMessage("Erreur serveur");
-
-  }
-
-};
-
-
+  };
 
   return (
+
     <div className="home-wrapper">
 
       <div className="login-page">
@@ -176,7 +204,9 @@ const handleRegister = async (e) => {
                     type="email"
                     value={email}
                     onChange={(e) =>
-                      setEmail(e.target.value)
+                      setEmail(
+                        e.target.value
+                      )
                     }
                     required
                   />
@@ -195,7 +225,9 @@ const handleRegister = async (e) => {
                     type="password"
                     value={password}
                     onChange={(e) =>
-                      setPassword(e.target.value)
+                      setPassword(
+                        e.target.value
+                      )
                     }
                     required
                   />
@@ -225,6 +257,7 @@ const handleRegister = async (e) => {
                 </span>
 
               </p>
+
             </>
 
           ) : (
@@ -232,7 +265,9 @@ const handleRegister = async (e) => {
             <>
               <h2>INSCRIPTION</h2>
 
-              <form onSubmit={handleRegister}>
+              <form
+                onSubmit={handleRegister}
+              >
 
                 <div className="form-group">
 
@@ -272,7 +307,9 @@ const handleRegister = async (e) => {
 
                 <div className="form-group">
 
-                  <label>Adresse Mail :</label>
+                  <label>
+                    Adresse Mail :
+                  </label>
 
                   <input
                     className="aremplir"
@@ -290,7 +327,9 @@ const handleRegister = async (e) => {
 
                 <div className="form-group">
 
-                  <label>Mot de passe :</label>
+                  <label>
+                    Mot de passe :
+                  </label>
 
                   <input
                     className="aremplir"
@@ -308,19 +347,24 @@ const handleRegister = async (e) => {
 
                 <div className="form-group">
 
-                  <label>Confirmer le mot de passe :</label>
+                  <label>
+                    Confirmer le mot de passe :
+                  </label>
 
                   <input
                     className="aremplir"
                     type="password"
                     value={confirmPassword}
                     onChange={(e) =>
-                      setConfirmPassword(e.target.value)
+                      setConfirmPassword(
+                        e.target.value
+                      )
                     }
                     required
                   />
 
                 </div>
+
                 <button
                   id="subutton"
                   type="submit"
@@ -344,14 +388,17 @@ const handleRegister = async (e) => {
                 </span>
 
               </p>
+
             </>
 
           )}
 
           {message && (
+
             <p className="message">
               {message}
             </p>
+
           )}
 
         </div>
@@ -363,5 +410,7 @@ const handleRegister = async (e) => {
       </div>
 
     </div>
+
   );
+
 }
