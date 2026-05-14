@@ -37,7 +37,7 @@ export default function Today() {
 
   const fetchTasks = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/api/tasks/${today}`, {
+      const res = await fetch(`http://https://std-list-15e5.onrender.com/api/tasks/${today}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -55,7 +55,7 @@ export default function Today() {
     if (!newTaskText.trim()) return;
 
     try {
-      const res = await fetch("http://localhost:3000/api/tasks", {
+      const res = await fetch("http://https://std-list-15e5.onrender.com/api/tasks", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -84,7 +84,7 @@ export default function Today() {
 
   const handleEditTask = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/api/tasks/${editTaskId}`, {
+      const res = await fetch(`http://https://std-list-15e5.onrender.com/api/tasks/${editTaskId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -107,7 +107,7 @@ export default function Today() {
 
   const handleDeleteTask = async (taskId) => {
     try {
-      const res = await fetch(`http://localhost:3000/api/tasks/${taskId}`, {
+      const res = await fetch(`http://https://std-list-15e5.onrender.com/api/tasks/${taskId}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
