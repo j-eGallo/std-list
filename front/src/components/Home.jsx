@@ -9,6 +9,9 @@ export default function Home() {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
+
+
+  
   const handleLogin = async (e) => {
     e.preventDefault();
     try {

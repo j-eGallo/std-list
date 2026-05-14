@@ -2,6 +2,7 @@ import React from "react";
 import Plus from "../assets/icons/PlusCircle.svg";
 import CalendarIcon from "../assets/icons/CalendarAlt.svg?react";
 import LogoutSVG from "../assets/icons/Logout.svg"
+import Settings from "../assets/icons/Settings.svg"
 import "./authhome.css"; 
 
 export default function SideBar({ prenom, nom, setActiveView, activeView, handleLogout, showDropdown, setShowDropdown }) {
@@ -23,7 +24,7 @@ export default function SideBar({ prenom, nom, setActiveView, activeView, handle
               {showDropdown && (
                 <div className="dropdown-menu">
                   <button className="dropdown-item">
-                    <img src="/assets/icons/settings.svg" alt="Gérer" />
+                    <img src={Settings} alt="Gérer" />
                     Gérer mon compte
                   </button>
                   <button className="dropdown-item" onClick={handleLogout}>

@@ -48,7 +48,6 @@
 .plus-icon {
   width: 18px;
   height: 18px;
-  filter: invert(33%) sepia(95%) saturate(739%) hue-rotate(354deg) brightness(98%) contrast(101%);
 }
 
 .ajouter-texte {

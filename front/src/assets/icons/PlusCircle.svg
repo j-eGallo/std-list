@@ -1,11 +1,9 @@
-<svg width="33" height="33" viewBox="0 0 33 33" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_99_2)">
-<circle cx="16.5" cy="16.5" r="16.5" fill="white"/>
-<path d="M25.334 14.4805V19.5605H7.79102V14.4805H25.334ZM19.3574 7.80078V26.4336H13.8203V7.80078H19.3574Z" fill="#EC5B15"/>
-</g>
-<defs>
-<clipPath id="clip0_99_2">
-<rect width="33" height="33" rx="16.5" fill="white"/>
-</clipPath>
-</defs>
-</svg>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
+<svg width="155px" height="155px" viewBox="-6.72 -6.72 29.44 29.44" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="SVGRepo_bgCarrier" stroke-width="0">
+<rect x="-6.72" y="-6.72" width="29.44" height="29.44" rx="14.72" fill="#ec5b15" strokewidth="0"/>
+</g>
+<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+<g id="SVGRepo_iconCarrier"> <path d="M10 1H6V6L1 6V10H6V15H10V10H15V6L10 6V1Z" fill="#ffffff"/> </g>
+</svg>
