@@ -1,12 +1,19 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import cors from 'cors';
 import User from '../models/User.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
 const router = express.Router();
+
+router.use(cors());
+
+router.options('/register', cors());
+
+router.options('/login', cors());
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
