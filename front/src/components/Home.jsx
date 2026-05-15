@@ -18,6 +18,8 @@ export default function Home() {
   const [message, setMessage] = useState('');
   const [showRegister, setShowRegister] = useState(false);
 
+  const [registerStep, setRegisterStep] = useState(1);
+
   const navigate = useNavigate();
 
   const API_URL =
@@ -249,9 +251,12 @@ export default function Home() {
 
                 <span
                   className="switch-span"
-                  onClick={() =>
-                    setShowRegister(true)
-                  }
+                  onClick={() => {
+
+                    setShowRegister(true);
+                    setRegisterStep(1);
+
+                  }}
                 >
                   {" "}vous inscrire
                 </span>
@@ -265,112 +270,136 @@ export default function Home() {
             <>
               <h2>INSCRIPTION</h2>
 
-              <form
-                onSubmit={handleRegister}
-              >
+              <form onSubmit={handleRegister}>
 
-                <div className="form-group">
+                {registerStep === 1 && (
 
-                  <label>Prénom :</label>
+                  <>
 
-                  <input
-                    className="aremplir"
-                    type="text"
-                    value={registerPrenom}
-                    onChange={(e) =>
-                      setRegisterPrenom(
-                        e.target.value
-                      )
-                    }
-                    required
-                  />
+                    <div className="form-group">
 
-                </div>
+                      <label>Prénom :</label>
 
-                <div className="form-group">
+                      <input
+                        className="aremplir"
+                        type="text"
+                        value={registerPrenom}
+                        onChange={(e) =>
+                          setRegisterPrenom(
+                            e.target.value
+                          )
+                        }
+                        required
+                      />
 
-                  <label>Nom :</label>
+                    </div>
 
-                  <input
-                    className="aremplir"
-                    type="text"
-                    value={registerNom}
-                    onChange={(e) =>
-                      setRegisterNom(
-                        e.target.value
-                      )
-                    }
-                    required
-                  />
+                    <div className="form-group">
 
-                </div>
+                      <label>Nom :</label>
 
-                <div className="form-group">
+                      <input
+                        className="aremplir"
+                        type="text"
+                        value={registerNom}
+                        onChange={(e) =>
+                          setRegisterNom(
+                            e.target.value
+                          )
+                        }
+                        required
+                      />
 
-                  <label>
-                    Adresse Mail :
-                  </label>
+                    </div>
 
-                  <input
-                    className="aremplir"
-                    type="email"
-                    value={registerEmail}
-                    onChange={(e) =>
-                      setRegisterEmail(
-                        e.target.value
-                      )
-                    }
-                    required
-                  />
+                    <button
+                      id="subutton"
+                      type="button"
+                      onClick={() =>
+                        setRegisterStep(2)
+                      }
+                    >
+                      SUIVANT
+                    </button>
 
-                </div>
+                  </>
 
-                <div className="form-group">
+                )}
 
-                  <label>
-                    Mot de passe :
-                  </label>
+                {registerStep === 2 && (
 
-                  <input
-                    className="aremplir"
-                    type="password"
-                    value={registerPassword}
-                    onChange={(e) =>
-                      setRegisterPassword(
-                        e.target.value
-                      )
-                    }
-                    required
-                  />
+                  <>
 
-                </div>
+                    <div className="form-group">
 
-                <div className="form-group">
+                      <label>
+                        Adresse Mail :
+                      </label>
 
-                  <label>
-                    Confirmer le mot de passe :
-                  </label>
+                      <input
+                        className="aremplir"
+                        type="email"
+                        value={registerEmail}
+                        onChange={(e) =>
+                          setRegisterEmail(
+                            e.target.value
+                          )
+                        }
+                        required
+                      />
 
-                  <input
-                    className="aremplir"
-                    type="password"
-                    value={confirmPassword}
-                    onChange={(e) =>
-                      setConfirmPassword(
-                        e.target.value
-                      )
-                    }
-                    required
-                  />
+                    </div>
 
-                </div>
+                    <div className="form-group">
 
-                <button
-                  id="subutton"
-                  type="submit"
-                >
-                  S'INSCRIRE
-                </button>
+                      <label>
+                        Mot de passe :
+                      </label>
+
+                      <input
+                        className="aremplir"
+                        type="password"
+                        value={registerPassword}
+                        onChange={(e) =>
+                          setRegisterPassword(
+                            e.target.value
+                          )
+                        }
+                        required
+                      />
+
+                    </div>
+
+                    <div className="form-group">
+
+                      <label>
+                        Confirmer le mot de passe :
+                      </label>
+
+                      <input
+                        className="aremplir"
+                        type="password"
+                        value={confirmPassword}
+                        onChange={(e) =>
+                          setConfirmPassword(
+                            e.target.value
+                          )
+                        }
+                        required
+                      />
+
+                    </div>
+
+                    <button
+                      id="subutton"
+                      type="submit"
+                    >
+                      S'INSCRIRE
+                    </button>
+
+                  </>
+
+                )}
 
               </form>
 
