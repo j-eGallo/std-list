@@ -1,62 +1,130 @@
 import React from "react";
-import Plus from "../assets/icons/PlusCircle.svg";
 import CalendarIcon from "../assets/icons/CalendarAlt.svg?react";
-import LogoutSVG from "../assets/icons/Logout.svg"
-import Settings from "../assets/icons/Settings.svg"
-import "./authhome.css"; 
+import LogoutSVG from "../assets/icons/Logout.svg";
+import Settings from "../assets/icons/Settings.svg";
+import "./authhome.css";
 
-export default function SideBar({ prenom, nom, setActiveView, activeView, handleLogout, showDropdown, setShowDropdown }) {
+export default function SideBar({
+  prenom,
+  nom,
+  setActiveView,
+  activeView,
+  handleLogout,
+  showDropdown,
+  setShowDropdown
+}) {
+
   return (
     <aside className="sidebar">
+
       <div>
+
         <div className="user-section">
+
           <div className="user-avatar" />
+
           <div className="user-name">
+
             {prenom} {nom}
+
             <div className="dropdown-container">
+
               <div
                 className="dropdown-button"
-                onClick={() => setShowDropdown(!showDropdown)}
+                onClick={() =>
+                  setShowDropdown(!showDropdown)
+                }
               >
                 <span className="arrow">▾</span>
               </div>
 
               {showDropdown && (
+
                 <div className="dropdown-menu">
-                  <button className="dropdown-item">
-                    <img src={Settings} alt="Gérer" />
+
+                  <button
+                    className="dropdown-item"
+                    onClick={() => {
+
+                      setActiveView("gestion-compte");
+                      setShowDropdown(false);
+
+                    }}
+                  >
+                    <img
+                      src={Settings}
+                      alt="Gérer"
+                    />
+
                     Gérer mon compte
+
                   </button>
-                  <button className="dropdown-item" onClick={handleLogout}>
-                    <img src={LogoutSVG} alt="Déconnexion" />
+
+                  <button
+                    className="dropdown-item"
+                    onClick={handleLogout}
+                  >
+                    <img
+                      src={LogoutSVG}
+                      alt="Déconnexion"
+                    />
+
                     Déconnexion
+
                   </button>
+
                 </div>
+
               )}
+
             </div>
+
           </div>
+
         </div>
 
         <nav className="menu">
 
           <button
-            className={`menu-btn ${activeView === "today" ? "active" : ""}`}
-            onClick={() => setActiveView("today")}
+            className={`menu-btn ${
+              activeView === "today"
+                ? "active"
+                : ""
+            }`}
+            onClick={() =>
+              setActiveView("today")
+            }
           >
             <CalendarIcon className="icon" />
+
             <h1>Aujourd'hui</h1>
+
           </button>
+
           <button
-            className={`menu-btn ${activeView === "calendar" ? "active" : ""}`}
-            onClick={() => setActiveView("calendar")}
+            className={`menu-btn ${
+              activeView === "calendar"
+                ? "active"
+                : ""
+            }`}
+            onClick={() =>
+              setActiveView("calendar")
+            }
           >
             <CalendarIcon className="icon" />
+
             <h1>Calendrier</h1>
+
           </button>
+
         </nav>
+
       </div>
 
-      <div className="bottom-link">Aides</div>
+      <div className="bottom-link">
+        Aides
+      </div>
+
     </aside>
   );
 }
