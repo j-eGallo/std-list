@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import Home from './components/Home.jsx';
-import AuthHome from './components/AuthHome.jsx'; // Assure-toi du bon chemin
+import AuthHome from './components/AuthHome.jsx';
 
 function App() {
   return (

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/SideBar"; 
 import Calendrier from "../components/Calendrier"
+import GestionCompte from "../components/GestionCompte"
 import Today from "./Today"; 
 import "./authhome.css";
 

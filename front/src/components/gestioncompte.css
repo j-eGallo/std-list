@@ -1,0 +1,110 @@
+.gestion-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 50px;
+  background-color: #f5f5f5;
+}
+
+.gestion-container {
+  max-width: 700px;
+}
+
+.gestion-container h1 {
+  font-size: 42px;
+  margin-bottom: 40px;
+  color: #1e1e1e;
+}
+
+.gestion-card {
+  background-color: white;
+  border-radius: 16px;
+  padding: 25px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: 0.2s;
+  border: 2px solid transparent;
+}
+
+.gestion-card:hover {
+  border: 2px solid #ec5b15;
+}
+
+.gestion-card h2 {
+  margin-bottom: 10px;
+  color: #1e1e1e;
+}
+
+.gestion-card p {
+  color: #666;
+}
+
+.delete-account {
+  margin-top: 30px;
+  background-color: #c62828;
+  color: white;
+  border: none;
+  padding: 14px 22px;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(236, 91, 21, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal {
+  width: 500px;
+  background-color: white;
+  border-radius: 18px;
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.modal h2 {
+  color: #1e1e1e;
+  margin-bottom: 10px;
+}
+
+.modal input {
+  height: 52px;
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+  padding: 0 15px;
+  font-size: 16px;
+  outline: none;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.cancel-btn {
+  background-color: #ececec;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.save-btn {
+  background-color: #ec5b15;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+}
