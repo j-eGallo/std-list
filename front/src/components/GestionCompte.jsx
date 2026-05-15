@@ -13,6 +13,181 @@ export default function GestionCompte() {
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
 
+  const API_URL =
+    "https://std-list-15e5.onrender.com";
+
+  const user =
+    JSON.parse(
+      localStorage.getItem("admin_info")
+    );
+
+  const handleUpdateEmail = async () => {
+
+    try {
+
+      const res = await fetch(
+        `${API_URL}/account/email`,
+        {
+          method: "PUT",
+
+          headers: {
+            "Content-Type":
+              "application/json"
+          },
+
+          body: JSON.stringify({
+
+            userId: user.id,
+
+            newEmail,
+
+            password: emailPassword
+
+          })
+
+        }
+      );
+
+      const data = await res.json();
+
+      if (res.ok) {
+
+        alert("Email modifié");
+
+        setShowEmailModal(false);
+
+      } else {
+
+        alert(data.error);
+
+      }
+
+    } catch (err) {
+
+      console.error(err);
+
+    }
+
+  };
+
+  const handleUpdatePassword = async () => {
+
+    if (
+      newPassword !==
+      confirmNewPassword
+    ) {
+
+      alert(
+        "Les mots de passe ne correspondent pas"
+      );
+
+      return;
+
+    }
+
+    try {
+
+      const res = await fetch(
+        `${API_URL}/account/password`,
+        {
+          method: "PUT",
+
+          headers: {
+            "Content-Type":
+              "application/json"
+          },
+
+          body: JSON.stringify({
+
+            userId: user.id,
+
+            currentPassword,
+
+            newPassword
+
+          })
+
+        }
+      );
+
+      const data = await res.json();
+
+      if (res.ok) {
+
+        alert(
+          "Mot de passe modifié"
+        );
+
+        setShowPasswordModal(false);
+
+      } else {
+
+        alert(data.error);
+
+      }
+
+    } catch (err) {
+
+      console.error(err);
+
+    }
+
+  };
+
+  const handleDeleteAccount = async () => {
+
+    const password =
+      prompt(
+        "Entrez votre mot de passe"
+      );
+
+    if (!password) return;
+
+    try {
+
+      const res = await fetch(
+        `${API_URL}/account/delete`,
+        {
+          method: "DELETE",
+
+          headers: {
+            "Content-Type":
+              "application/json"
+          },
+
+          body: JSON.stringify({
+
+            userId: user.id,
+
+            password
+
+          })
+
+        }
+      );
+
+      const data = await res.json();
+
+      if (res.ok) {
+
+        localStorage.clear();
+
+        window.location.href = "/";
+
+      } else {
+
+        alert(data.error);
+
+      }
+
+    } catch (err) {
+
+      console.error(err);
+
+    }
+
+  };
+
   return (
     <div className="gestion-page">
 
@@ -22,21 +197,38 @@ export default function GestionCompte() {
 
         <div
           className="gestion-card"
-          onClick={() => setShowEmailModal(true)}
+          onClick={() =>
+            setShowEmailModal(true)
+          }
         >
           <h2>Modifier mon email</h2>
-          <p>Changer votre adresse mail</p>
+
+          <p>
+            Changer votre adresse mail
+          </p>
+
         </div>
 
         <div
           className="gestion-card"
-          onClick={() => setShowPasswordModal(true)}
+          onClick={() =>
+            setShowPasswordModal(true)
+          }
         >
-          <h2>Modifier mon mot de passe</h2>
-          <p>Changer votre mot de passe</p>
+          <h2>
+            Modifier mon mot de passe
+          </h2>
+
+          <p>
+            Changer votre mot de passe
+          </p>
+
         </div>
 
-        <button className="delete-account">
+        <button
+          className="delete-account"
+          onClick={handleDeleteAccount}
+        >
           Supprimer mon compte
         </button>
 
@@ -48,32 +240,47 @@ export default function GestionCompte() {
 
           <div className="modal">
 
-            <h2>Modifier mon email</h2>
+            <h2>
+              Modifier mon email
+            </h2>
 
             <input
               type="email"
               placeholder="Nouvel email"
               value={newEmail}
-              onChange={(e) => setNewEmail(e.target.value)}
+              onChange={(e) =>
+                setNewEmail(
+                  e.target.value
+                )
+              }
             />
 
             <input
               type="password"
               placeholder="Mot de passe"
               value={emailPassword}
-              onChange={(e) => setEmailPassword(e.target.value)}
+              onChange={(e) =>
+                setEmailPassword(
+                  e.target.value
+                )
+              }
             />
 
             <div className="modal-buttons">
 
               <button
                 className="cancel-btn"
-                onClick={() => setShowEmailModal(false)}
+                onClick={() =>
+                  setShowEmailModal(false)
+                }
               >
                 Annuler
               </button>
 
-              <button className="save-btn">
+              <button
+                className="save-btn"
+                onClick={handleUpdateEmail}
+              >
                 Modifier
               </button>
 
@@ -91,20 +298,30 @@ export default function GestionCompte() {
 
           <div className="modal">
 
-            <h2>Modifier mon mot de passe</h2>
+            <h2>
+              Modifier mon mot de passe
+            </h2>
 
             <input
               type="password"
               placeholder="Mot de passe actuel"
               value={currentPassword}
-              onChange={(e) => setCurrentPassword(e.target.value)}
+              onChange={(e) =>
+                setCurrentPassword(
+                  e.target.value
+                )
+              }
             />
 
             <input
               type="password"
               placeholder="Nouveau mot de passe"
               value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
+              onChange={(e) =>
+                setNewPassword(
+                  e.target.value
+                )
+              }
             />
 
             <input
@@ -112,7 +329,9 @@ export default function GestionCompte() {
               placeholder="Confirmer le nouveau mot de passe"
               value={confirmNewPassword}
               onChange={(e) =>
-                setConfirmNewPassword(e.target.value)
+                setConfirmNewPassword(
+                  e.target.value
+                )
               }
             />
 
@@ -120,12 +339,17 @@ export default function GestionCompte() {
 
               <button
                 className="cancel-btn"
-                onClick={() => setShowPasswordModal(false)}
+                onClick={() =>
+                  setShowPasswordModal(false)
+                }
               >
                 Annuler
               </button>
 
-              <button className="save-btn">
+              <button
+                className="save-btn"
+                onClick={handleUpdatePassword}
+              >
                 Modifier
               </button>
 
