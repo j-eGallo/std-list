@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import CalendarIcon from "../assets/icons/CalendarAlt.svg?react";
 import LogoutSVG from "../assets/icons/Logout.svg";
 import Settings from "../assets/icons/Settings.svg";
@@ -14,7 +14,41 @@ export default function SideBar({
   setShowDropdown
 }) {
 
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+
+    const handleClickOutside = (e) => {
+
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target)
+      ) {
+
+        setShowDropdown(false);
+
+      }
+
+    };
+
+    document.addEventListener(
+      "mousedown",
+      handleClickOutside
+    );
+
+    return () => {
+
+      document.removeEventListener(
+        "mousedown",
+        handleClickOutside
+      );
+
+    };
+
+  }, []);
+
   return (
+
     <aside className="sidebar">
 
       <div>
@@ -27,7 +61,10 @@ export default function SideBar({
 
             {prenom} {nom}
 
-            <div className="dropdown-container">
+            <div
+              className="dropdown-container"
+              ref={dropdownRef}
+            >
 
               <div
                 className="dropdown-button"
@@ -46,11 +83,15 @@ export default function SideBar({
                     className="dropdown-item"
                     onClick={() => {
 
-                      setActiveView("gestion-compte");
+                      setActiveView(
+                        "gestion-compte"
+                      );
+
                       setShowDropdown(false);
 
                     }}
                   >
+
                     <img
                       src={Settings}
                       alt="Gérer"
@@ -64,6 +105,7 @@ export default function SideBar({
                     className="dropdown-item"
                     onClick={handleLogout}
                   >
+
                     <img
                       src={LogoutSVG}
                       alt="Déconnexion"
@@ -95,6 +137,7 @@ export default function SideBar({
               setActiveView("today")
             }
           >
+
             <CalendarIcon className="icon" />
 
             <h1>Aujourd'hui</h1>
@@ -111,6 +154,7 @@ export default function SideBar({
               setActiveView("calendar")
             }
           >
+
             <CalendarIcon className="icon" />
 
             <h1>Calendrier</h1>
@@ -126,5 +170,7 @@ export default function SideBar({
       </div>
 
     </aside>
+
   );
+
 }

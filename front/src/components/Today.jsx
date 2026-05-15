@@ -1,16 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, {
+  useEffect,
+  useState,
+  useRef
+} from "react";
+
 import PlusIcon from "../assets/icons/PlusCircle.svg";
+
 import "./today.css";
 
 export default function Today() {
 
   const [tasks, setTasks] = useState([]);
+
   const [showModal, setShowModal] = useState(false);
+
   const [newTaskText, setNewTaskText] = useState("");
+
   const [newTaskDate, setNewTaskDate] = useState("");
 
   const [editMode, setEditMode] = useState(false);
+
   const [editTaskId, setEditTaskId] = useState(null);
+
+  const modalRef = useRef(null);
 
   const today =
     new Date().toISOString().split("T")[0];
@@ -27,6 +39,41 @@ export default function Today() {
       "Super To-do List - Accueil";
 
   }, []);
+
+  useEffect(() => {
+
+    const handleClickOutside = (e) => {
+
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(e.target)
+      ) {
+
+        closeModal();
+
+      }
+
+    };
+
+    if (showModal) {
+
+      document.addEventListener(
+        "mousedown",
+        handleClickOutside
+      );
+
+    }
+
+    return () => {
+
+      document.removeEventListener(
+        "mousedown",
+        handleClickOutside
+      );
+
+    };
+
+  }, [showModal]);
 
   const openModal = (task = null) => {
 
@@ -287,7 +334,10 @@ export default function Today() {
 
         <div className="overlay">
 
-          <div className="modal">
+          <div
+            className="modal"
+            ref={modalRef}
+          >
 
             <h3>Nom de la tâche</h3>
 
