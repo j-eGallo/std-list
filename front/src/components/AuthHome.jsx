@@ -46,7 +46,10 @@ export default function AuthHome() {
       <main className="main-content">
         {activeView === "today" && <Today />}
         {activeView === "calendar" && <Calendrier />}
-      </main>
+      </main>4{
+  activeView === "gestion-compte" &&
+  <GestionCompte />
+}
     </div>
   );
 }
