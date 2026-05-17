@@ -74,10 +74,6 @@ export default function Home() {
           JSON.stringify(data.admin)
         );
 
-        setMessage(
-          'Connexion réussie'
-        );
-
         navigate('/auth-home');
 
       } else {
@@ -146,9 +142,19 @@ export default function Home() {
 
       if (res.ok) {
 
+        setShowRegister(false);
+
+        setRegisterStep(1);
+
         setMessage(
           "Compte créé avec succès"
         );
+
+        setRegisterPrenom('');
+        setRegisterNom('');
+        setRegisterEmail('');
+        setRegisterPassword('');
+        setConfirmPassword('');
 
         console.log(data);
 
@@ -236,6 +242,14 @@ export default function Home() {
 
                 </div>
 
+                {message && (
+
+                  <p className="message">
+                    {message}
+                  </p>
+
+                )}
+
                 <button
                   id="subutton"
                   type="submit"
@@ -255,6 +269,7 @@ export default function Home() {
 
                     setShowRegister(true);
                     setRegisterStep(1);
+                    setMessage('');
 
                   }}
                 >
@@ -312,12 +327,23 @@ export default function Home() {
 
                     </div>
 
+                    {message && (
+
+                      <p className="message">
+                        {message}
+                      </p>
+
+                    )}
+
                     <button
                       id="subutton"
                       type="button"
-                      onClick={() =>
-                        setRegisterStep(2)
-                      }
+                      onClick={() => {
+
+                        setRegisterStep(2);
+                        setMessage('');
+
+                      }}
                     >
                       SUIVANT
                     </button>
@@ -390,6 +416,14 @@ export default function Home() {
 
                     </div>
 
+                    {message && (
+
+                      <p className="message">
+                        {message}
+                      </p>
+
+                    )}
+
                     <button
                       id="subutton"
                       type="submit"
@@ -409,9 +443,12 @@ export default function Home() {
 
                 <span
                   className="switch-span"
-                  onClick={() =>
-                    setShowRegister(false)
-                  }
+                  onClick={() => {
+
+                    setShowRegister(false);
+                    setMessage('');
+
+                  }}
                 >
                   {" "}Se connecter
                 </span>
@@ -419,14 +456,6 @@ export default function Home() {
               </p>
 
             </>
-
-          )}
-
-          {message && (
-
-            <p className="message">
-              {message}
-            </p>
 
           )}
 

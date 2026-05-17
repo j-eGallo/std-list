@@ -92,6 +92,7 @@ label {
 form {
   text-align: center !important;
   min-height: 290px !important;  
+  position: relative;
 }
 
 #subutton {
@@ -109,7 +110,7 @@ form {
 
   transition: 0.3s ease;
 
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 #subutton:hover {
@@ -117,8 +118,21 @@ form {
 }
 
 .message {
-  margin-top: 15px;
+
+  position: absolute;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  margin-top: 0;
+
   font-size: 14px;
+
+  color: #ffffff;
+
+  font-weight: bold;
+
 }
 
 .switch-text {
