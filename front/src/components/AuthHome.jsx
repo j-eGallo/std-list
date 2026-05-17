@@ -1,38 +1,74 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Sidebar from "../components/SideBar"; 
-import Calendrier from "../components/Calendrier"
-import GestionCompte from "../components/GestionCompte"
-import Today from "./Today"; 
+
+import Sidebar from "../components/SideBar";
+import Calendrier from "../components/Calendrier";
+import GestionCompte from "../components/GestionCompte";
+import Today from "./Today";
+
 import "./authhome.css";
 
 export default function AuthHome() {
+
   const [prenom, setPrenom] = useState("Utilisateur");
   const [nom, setNom] = useState("");
+
   const [showDropdown, setShowDropdown] = useState(false);
-  const [activeView, setActiveView] = useState("today");
+
+  const [activeView, setActiveView] =
+    useState("today");
+
+  const [sidebarOpen, setSidebarOpen] =
+    useState(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    const userData = localStorage.getItem("admin_info");
+
+    const userData =
+      localStorage.getItem("admin_info");
+
     if (userData) {
+
       try {
+
         const parsed = JSON.parse(userData);
-        if (parsed?.prenom) setPrenom(parsed.prenom);
-        if (parsed?.nom) setNom(parsed.nom);
+
+        if (parsed?.prenom) {
+          setPrenom(parsed.prenom);
+        }
+
+        if (parsed?.nom) {
+          setNom(parsed.nom);
+        }
+
       } catch (err) {
-        console.error("❌ Erreur parsing localStorage :", err);
+
+        console.error(
+          "❌ Erreur parsing localStorage :",
+          err
+        );
+
       }
+
     }
+
   }, []);
 
   const handleLogout = () => {
+
     localStorage.clear();
+
     navigate("/");
+
   };
 
   return (
+
     <div className="authhome-wrapper">
+
+
+
       <Sidebar
         prenom={prenom}
         nom={nom}
@@ -41,16 +77,31 @@ export default function AuthHome() {
         handleLogout={handleLogout}
         showDropdown={showDropdown}
         setShowDropdown={setShowDropdown}
+        sidebarOpen={sidebarOpen}
+        setSidebarOpen={setSidebarOpen}
       />
 
       <main className="main-content">
-        {activeView === "today" && <Today />}
-        {activeView === "calendar" && <Calendrier />}
-      </main>
+
+        {
+          activeView === "today" &&
+          <Today />
+        }
+
+        {
+          activeView === "calendar" &&
+          <Calendrier />
+        }
+
         {
           activeView === "gestion-compte" &&
           <GestionCompte />
         }
+
+      </main>
+
     </div>
+
   );
+
 }

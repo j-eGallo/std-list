@@ -202,3 +202,36 @@
 .empty-tasks {
   color: #999;
 }
+
+.sidebar-toggle {
+  display: none;
+}
+
+@media screen and (max-width: 950px) {
+
+      .main-content {
+        width: 100%;
+        padding-top: 100px;
+        padding-left: 20px;
+        padding-right: 20px;
+        justify-content: center;
+        align-items: flex-start;
+        padding-top: 0;
+    }
+
+    .sidebar-toggle {
+  display: flex;
+}
+
+.calendrier-header {
+    display: block;
+    justify-content: space-between;
+    align-items: center;
+    place-items: center;
+  }
+
+  .tasks-container {
+    margin-top: 90px;
+    place-items: center;
+}
+}

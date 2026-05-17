@@ -1,17 +1,35 @@
-import React, { useEffect, useRef } from "react";
-import CalendarIcon from "../assets/icons/CalendarAlt.svg?react";
-import LogoutSVG from "../assets/icons/Logout.svg";
-import Settings from "../assets/icons/Settings.svg";
+import React, {
+  useEffect,
+  useRef
+} from "react";
+
+import CalendarIcon
+from "../assets/icons/CalendarAlt.svg?react";
+
+import LogoutSVG
+from "../assets/icons/Logout.svg";
+
+import Settings
+from "../assets/icons/Settings.svg";
+
 import "./authhome.css";
 
 export default function SideBar({
+
   prenom,
   nom,
+
   setActiveView,
   activeView,
+
   handleLogout,
+
   showDropdown,
-  setShowDropdown
+  setShowDropdown,
+
+  sidebarOpen,
+  setSidebarOpen
+
 }) {
 
   const dropdownRef = useRef(null);
@@ -49,7 +67,22 @@ export default function SideBar({
 
   return (
 
-    <aside className="sidebar">
+    <aside
+      className={
+        `sidebar ${sidebarOpen ? "open" : ""}`
+      }
+    >
+
+      <button
+        className="sidebar-toggle"
+        onClick={() =>
+          setSidebarOpen(!sidebarOpen)
+        }
+      >
+
+        {sidebarOpen ? "<" : ">"}
+
+      </button>
 
       <div>
 
@@ -69,10 +102,16 @@ export default function SideBar({
               <div
                 className="dropdown-button"
                 onClick={() =>
-                  setShowDropdown(!showDropdown)
+                  setShowDropdown(
+                    !showDropdown
+                  )
                 }
               >
-                <span className="arrow">▾</span>
+
+                <span className="arrow">
+                  ▾
+                </span>
+
               </div>
 
               {showDropdown && (
@@ -86,6 +125,8 @@ export default function SideBar({
                       setActiveView(
                         "gestion-compte"
                       );
+
+                      setSidebarOpen(false);
 
                       setShowDropdown(false);
 
@@ -133,9 +174,13 @@ export default function SideBar({
                 ? "active"
                 : ""
             }`}
-            onClick={() =>
-              setActiveView("today")
-            }
+            onClick={() => {
+
+              setActiveView("today");
+
+              setSidebarOpen(false);
+
+            }}
           >
 
             <CalendarIcon className="icon" />
@@ -150,9 +195,13 @@ export default function SideBar({
                 ? "active"
                 : ""
             }`}
-            onClick={() =>
-              setActiveView("calendar")
-            }
+            onClick={() => {
+
+              setActiveView("calendar");
+
+              setSidebarOpen(false);
+
+            }}
           >
 
             <CalendarIcon className="icon" />
@@ -165,9 +214,9 @@ export default function SideBar({
 
       </div>
 
-      <div className="bottom-link">
+      {/* <div className="bottom-link">
         Aides
-      </div>
+      </div> */}
 
     </aside>
 
