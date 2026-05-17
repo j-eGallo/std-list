@@ -40,3 +40,35 @@
 .read-the-docs {
   color: #888;
 }
+
+
+
+@media screen and (max-width: 950px) {
+
+.logo {
+    margin-bottom: 10px;
+    width: 222px;
+    height: auto;
+    align-self: center;
+}
+
+#login-card h2 {
+    font-size: 30px;
+    font-weight: 900;
+    margin-top: 0;
+    margin-bottom: 55px;
+    text-align: center;
+}
+
+.aremplir {
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    margin-bottom: 15px;
+    width: 349px !important;
+    height: 40px;
+    font-size: 14px;
+}
+
+
+}
