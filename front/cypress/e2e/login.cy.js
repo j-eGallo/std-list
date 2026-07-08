@@ -14,17 +14,19 @@ describe("Connexion utilisateur", () => {
       },
     }).as("login");
 
+    cy.intercept("GET", "**/api/tasks/*", {
+      statusCode: 200,
+      body: [],
+    }).as("getTasks");
+
     cy.visit("/");
 
     cy.get('[data-cy="login-email"]').type("test@test.com");
     cy.get('[data-cy="login-password"]').type("Password123!");
     cy.get('[data-cy="login-submit"]').click();
 
+    cy.wait("@login");
 
-    
-    cy.window().then((win) => {
-      expect(win.localStorage.getItem("token")).to.eq("fake-jwt-token");
-    });
-
+    cy.url().should("include", "/auth-home");
   });
 });

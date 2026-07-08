@@ -100,6 +100,7 @@ export default function SideBar({
             >
 
               <div
+                data-cy="open-user-menu"
                 className="dropdown-button"
                 onClick={() =>
                   setShowDropdown(
@@ -119,6 +120,7 @@ export default function SideBar({
                 <div className="dropdown-menu">
 
                   <button
+                    data-cy="go-account"
                     className="dropdown-item"
                     onClick={() => {
 

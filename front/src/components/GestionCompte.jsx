@@ -226,6 +226,7 @@ export default function GestionCompte() {
         </div>
 
         <button
+          data-cy="delete-account"
           className="delete-account"
           onClick={handleDeleteAccount}
         >
