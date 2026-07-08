@@ -7,7 +7,7 @@ on:
     branches: [main, master]
 
 jobs:
-  tests:
+  cypress-tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,6 +27,16 @@ jobs:
         working-directory: ./front
         run: npm run build
 
-      - name: Lancer tests Cypress
+      - name: Installer wait-on
+        run: npm install -g wait-on
+
+      - name: Lancer le frontend Vite
+        working-directory: ./front
+        run: npm run dev -- --host 127.0.0.1 &
+
+      - name: Attendre le frontend
+        run: wait-on http://localhost:5173
+
+      - name: Lancer les tests Cypress
         working-directory: ./front
         run: npx cypress run
