@@ -207,6 +207,7 @@ export default function Home() {
                   </label>
 
                   <input
+                    data-cy="login-email"
                     id="email"
                     className="aremplir"
                     type="email"
@@ -228,6 +229,7 @@ export default function Home() {
                   </label>
 
                   <input
+                    data-cy="login-password"
                     id="password"
                     className="aremplir"
                     type="password"
@@ -251,6 +253,7 @@ export default function Home() {
                 )}
 
                 <button
+                  data-cy = "login-submit"
                   id="subutton"
                   type="submit"
                 >
@@ -264,6 +267,7 @@ export default function Home() {
                 Si vous n'êtes pas connecté vous pouvez
 
                 <span
+                  data-cy="go-register"
                   className="switch-span"
                   onClick={() => {
 
@@ -296,6 +300,7 @@ export default function Home() {
                       <label>Prénom :</label>
 
                       <input
+                        data-cy="register-prenom"
                         className="aremplir"
                         type="text"
                         value={registerPrenom}
@@ -314,6 +319,7 @@ export default function Home() {
                       <label>Nom :</label>
 
                       <input
+                        data-cy="register-nom"
                         className="aremplir"
                         type="text"
                         value={registerNom}
@@ -336,6 +342,7 @@ export default function Home() {
                     )}
 
                     <button
+                      data-cy="register-next"
                       id="subutton"
                       type="button"
                       onClick={() => {
@@ -363,6 +370,7 @@ export default function Home() {
                       </label>
 
                       <input
+                        data-cy="register-email"
                         className="aremplir"
                         type="email"
                         value={registerEmail}
@@ -383,6 +391,7 @@ export default function Home() {
                       </label>
 
                       <input
+                        data-cy="register-password"
                         className="aremplir"
                         type="password"
                         value={registerPassword}
@@ -403,6 +412,7 @@ export default function Home() {
                       </label>
 
                       <input
+                        data-cy="register-confirm-password"
                         className="aremplir"
                         type="password"
                         value={confirmPassword}
@@ -425,6 +435,7 @@ export default function Home() {
                     )}
 
                     <button
+                      data-cy="register-submit"
                       id="subutton"
                       type="submit"
                     >

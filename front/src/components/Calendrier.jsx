@@ -165,6 +165,7 @@ export default function Calendrier() {
         <div className="calendar-controls">
 
           <button
+            data-cy="prev-day"
             className="daynav"
             onClick={goPreviousDay}
           >
@@ -172,6 +173,7 @@ export default function Calendrier() {
           </button>
 
           <button
+            data-cy="today-btn"
             className="today"
             onClick={goToday}
           >
@@ -179,6 +181,7 @@ export default function Calendrier() {
           </button>
 
           <button
+            data-cy="next-day"
             className="daynav"
             onClick={goNextDay}
           >
@@ -264,6 +267,7 @@ export default function Calendrier() {
               <div
                 key={task._id}
                 className="task-item"
+                data-cy="task-item"
               >
 
                 <input
@@ -275,7 +279,7 @@ export default function Calendrier() {
                   }
                 />
 
-                <span className="task-text">
+                <span className="task-text" data-cy="task-text">
                   {task.text}
                 </span>
 

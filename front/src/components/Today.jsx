@@ -313,6 +313,7 @@ export default function Today() {
 
         <div
           className="right-block"
+          data-cy="open-add-task"
           onClick={() => openModal()}
         >
 
@@ -342,6 +343,7 @@ export default function Today() {
             <h3>Nom de la tâche</h3>
 
             <input
+              data-cy="text-input"
               type="text"
               placeholder="Ex: Réparer armoire"
               value={newTaskText}
@@ -353,6 +355,7 @@ export default function Today() {
             />
 
             <input
+              data-cy="task-date"
               type="date"
               value={newTaskDate}
               onChange={(e) =>
@@ -372,6 +375,7 @@ export default function Today() {
               </button>
 
               <button
+                data-cy="submit-task"
                 className="add-btn"
                 onClick={
                   editMode
@@ -405,9 +409,11 @@ export default function Today() {
             <div
               key={task._id}
               className="task-item"
+              data-cy="task-item"
             >
 
               <input
+                data-cy="delete-task"
                 type="checkbox"
                 onChange={() =>
                   handleDeleteTask(
