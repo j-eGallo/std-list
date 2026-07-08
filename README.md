@@ -1,20 +1,23 @@
 # STD-List
 
-Application de gestion de tâches moderne développée avec React, Node.js, Express et MongoDB.
+Application de gestion de tâches moderne développée avec **React**, **Node.js**, **Express** et **MongoDB**.
 
-## Aperçu
+---
 
-STD-List est une application fullstack permettant :
+# Aperçu
+
+STD-List est une application Full Stack permettant :
 
 - Création de compte utilisateur
 - Connexion sécurisée avec JWT
 - Gestion de tâches quotidiennes
 - Calendrier des tâches
 - Modification du compte utilisateur
-- Modification email et mot de passe
+- Modification de l'adresse email
+- Modification du mot de passe
 - Suppression du compte
-- Déploiement frontend/backend
-- CI/CD automatisé avec GitHub + Render + Vercel
+- Déploiement Frontend / Backend
+- Intégration continue avec GitHub Actions
 
 ---
 
@@ -58,16 +61,16 @@ STD-List est une application fullstack permettant :
 
 - Inscription utilisateur
 - Connexion utilisateur
-- JWT Token
-- Stockage utilisateur connecté dans localStorage
+- Authentification JWT
+- Sauvegarde de la session dans le LocalStorage
 
 ## Gestion des tâches
 
 - Ajouter une tâche
 - Modifier une tâche
 - Supprimer une tâche
-- Affichage des tâches du jour
-- Affichage calendrier
+- Consultation des tâches du jour
+- Consultation des tâches via un calendrier
 
 ## Gestion du compte
 
@@ -78,10 +81,9 @@ STD-List est une application fullstack permettant :
 ## Interface utilisateur
 
 - Sidebar dynamique
-- Dropdown utilisateur
-- Modals interactifs
-- Overlay dynamique
-- Responsive design
+- Menu déroulant utilisateur
+- Fenêtres modales
+- Responsive Design
 
 ---
 
@@ -91,40 +93,42 @@ STD-List est une application fullstack permettant :
 
 ```txt
 front/
- ├── src/
- │    ├── components/
- │    │    ├── SideBar.jsx
- │    │    ├── Today.jsx
- │    │    ├── Calendrier.jsx
- │    │    ├── GestionCompte.jsx
- │    │    ├── Home.jsx
- │    │
- │    ├── assets/
- │    ├── App.jsx
- │    ├── main.jsx
+│
+├── src/
+│   ├── components/
+│   │   ├── SideBar.jsx
+│   │   ├── Today.jsx
+│   │   ├── Calendrier.jsx
+│   │   ├── GestionCompte.jsx
+│   │   └── Home.jsx
+│   │
+│   ├── assets/
+│   ├── App.jsx
+│   └── main.jsx
 ```
 
 ## Backend
 
 ```txt
 Back/
- ├── models/
- │    ├── User.js
- │    ├── Task.js
- │
- ├── routes/
- │    ├── auth.js
- │    ├── tasks.js
- │    ├── account.js
- │
- ├── server.js
+│
+├── models/
+│   ├── User.js
+│   └── Task.js
+│
+├── routes/
+│   ├── auth.js
+│   ├── tasks.js
+│   └── account.js
+│
+└── server.js
 ```
 
 ---
 
 # Installation
 
-## 1. Cloner le projet
+## Cloner le projet
 
 ```bash
 git clone https://github.com/j-eGallo/std-list
@@ -141,7 +145,7 @@ cd front
 npm install
 ```
 
-## Lancer le frontend
+## Lancement
 
 ```bash
 npm run dev
@@ -160,7 +164,7 @@ npm install
 
 ## Variables d'environnement
 
-Créer un fichier `.env`
+Créer un fichier **.env**
 
 ```env
 MONGO_URI=votre_uri_mongodb
@@ -168,7 +172,7 @@ JWT_SECRET=votre_secret
 PORT=3000
 ```
 
-## Lancer le backend
+## Lancement
 
 ```bash
 node server.js
@@ -176,9 +180,9 @@ node server.js
 
 ---
 
-# API Routes
+# API REST
 
-## Auth
+## Authentification
 
 ### Inscription
 
@@ -194,7 +198,7 @@ POST /auth/login
 
 ---
 
-## Tasks
+## Gestion des tâches
 
 ### Récupérer les tâches
 
@@ -222,21 +226,21 @@ DELETE /api/tasks/:id
 
 ---
 
-## Compte utilisateur
+## Gestion du compte
 
-### Modifier email
+### Modifier son email
 
 ```http
 PUT /account/email
 ```
 
-### Modifier mot de passe
+### Modifier son mot de passe
 
 ```http
 PUT /account/password
 ```
 
-### Supprimer compte
+### Supprimer son compte
 
 ```http
 DELETE /account/delete
@@ -244,75 +248,130 @@ DELETE /account/delete
 
 ---
 
+# Tests automatisés
+
+Le projet utilise **Cypress** afin d'automatiser les tests End-to-End des principales fonctionnalités de l'application.
+
+## Tests réalisés
+
+### Authentification
+
+- Inscription d'un utilisateur
+- Connexion d'un utilisateur
+
+### Gestion des tâches
+
+- Ajout d'une tâche
+- Suppression d'une tâche
+
+Les tests permettent de simuler le comportement réel d'un utilisateur directement dans le navigateur.
+
+## Exécution des tests
+
+### Mode graphique
+
+```bash
+npx cypress open
+```
+
+### Mode terminal
+
+```bash
+npx cypress run
+```
+
+---
+
 # Docker
 
-## Dockerfile backend
+Le backend est conteneurisé avec **Docker** afin de garantir un environnement identique entre le développement et la production.
 
-```dockerfile
-FROM node:20
+## Construction de l'image
 
-WORKDIR /app
+```bash
+docker build -t std-list-back .
+```
 
-COPY package*.json ./
+## Lancement du conteneur
 
-RUN npm install
-
-COPY . .
-
-EXPOSE 3000
-
-CMD ["node", "server.js"]
+```bash
+docker run -p 3000:3000 std-list-back
 ```
 
 ---
 
 # CI/CD
 
-Le projet utilise un système CI/CD automatisé.
+Le projet met en place une démarche **DevOps** grâce à **GitHub Actions**.
 
-## Workflow
+À chaque **Push** ou **Pull Request** sur la branche principale, un workflow est automatiquement exécuté.
+
+## Étapes du pipeline
+
+- Récupération du dépôt GitHub
+- Installation de Node.js
+- Installation des dépendances
+- Build du Frontend
+- Lancement automatique du serveur Vite
+- Exécution des tests Cypress
+- Vérification du bon déroulement du pipeline
+
+Le workflow est disponible dans :
 
 ```txt
-GitHub → Render/Vercel → Déploiement automatique
+.github/workflows/test.yml
 ```
-
-Chaque push Git déclenche automatiquement :
-
-- Build frontend
-- Déploiement frontend
-- Build backend
-- Déploiement backend
 
 ---
 
 # Déploiement
 
+L'application est entièrement déployée.
+
 ## Frontend
 
-Déployé sur Vercel.
+- Vercel
 
 ## Backend
 
-Déployé sur Render.
+- Render
 
 ## Base de données
 
-MongoDB Atlas.
+- MongoDB Atlas
+
+Les variables d'environnement sont configurées directement sur les plateformes de déploiement afin de sécuriser les informations sensibles.
 
 ---
 
 # Sécurité
 
-- Hash des mots de passe avec bcrypt
+Le projet met en œuvre plusieurs mécanismes de sécurité :
+
 - Authentification JWT
-- Vérification utilisateur
-- Vérification mot de passe avant suppression
-- Vérification mot de passe avant modification email
+- Hachage des mots de passe avec bcrypt
+- Variables d'environnement (.env)
+- Fichier `.env.example`
+- Vérification des identifiants avant modification du compte
+- Vérification du mot de passe avant suppression du compte
+- API REST sécurisée
 
 ---
 
 # Auteur
 
-Jean-Emmanuel Gallo
+**Jean-Emmanuel Gallo**
 
-Développeur Fullstack
+Développeur Full Stack JavaScript
+
+## Technologies
+
+- React
+- Node.js
+- Express
+- MongoDB
+- Docker
+- Cypress
+- GitHub Actions
+- Vercel
+- Render
